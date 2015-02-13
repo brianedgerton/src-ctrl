@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var control = require( "source-control" );
+
+control.precommit();

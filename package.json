@@ -1,0 +1,36 @@
+{
+  "name": "src-ctrl",
+  "version": "0.0.1",
+  "contributors": [
+    {
+      "name": "Brian Edgerton",
+      "email": "brian.edgerton@leankit.com"
+    }
+  ],
+  "description": "Git hooks and utilities for keeping your code in order",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "gulp test",
+    "coverage": "gulp coverage"
+  },
+  "dependencies": {
+    "lodash": "2.4.1",
+    "when": "3.6.4"
+  },
+  "devDependencies": {
+    "gulp": "~3.8.0",
+    "gulp-mocha": "~2.0.0",
+    "gulp-watch": "~3.0.0",
+    "expect.js": "~0.3.1",
+    "mocha": "~2.1.0",
+    "istanbul": "~0.3.2",
+    "gulp-istanbul": "0.5.x",
+    "open": "0.0.5",
+    "whistlepunk": "~0.0.1",
+    "sinon": "1.12.x"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "author": "LeanKit"
+}
