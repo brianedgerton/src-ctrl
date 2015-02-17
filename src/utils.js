@@ -1,6 +1,4 @@
-var when = require( "when" );
 var lift = require( "when/node" ).lift;
-var spawn = require( "child_process" ).spawn;
 var npm = require( "npm" );
 
 var api = module.exports = {
@@ -8,7 +6,7 @@ var api = module.exports = {
 		if ( msg ) {
 			console.log( msg );
 		}
-		process.exit( 1 );
+		process.exit( 0 );
 	},
 
 	fail: function( msg ) {
@@ -16,16 +14,6 @@ var api = module.exports = {
 			console.log( msg );
 		}
 		process.exit( 1 );
-	},
-
-	parseArgs: function( command ) {
-		var pieces = command.split( " " );
-		var cmd = pieces.shift();
-
-		return {
-			cmd: cmd,
-			args: pieces
-		};
 	},
 
 	loadNpm: function( pkg ) {
