@@ -8,7 +8,7 @@ module.exports = function( hook, pkg, _utils ) {
 
 	return function() {
 
-		if ( !pkg.scripts || !pkg.scripts[ hook ] ) {
+		if ( !pkg !pkg.scripts || !pkg.scripts[ hook ] ) {
 			return utils.success();
 		}
 

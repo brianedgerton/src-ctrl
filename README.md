@@ -1,3 +1,3 @@
-# source-control
+# src-ctrl
 
 ## DO NOT USE, STILL IN PROOF OF CONCEPT STAGE

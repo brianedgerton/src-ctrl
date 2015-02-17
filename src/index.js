@@ -9,11 +9,11 @@ try {
 	return utils.finish( "No package.json found" );
 }
 
-if ( !pkg || !pkg.scripts ) {
-	return utils.finish( "No commands found." );
-}
-
+var hooks = [ "precommit", "prepush" ].reduce(function( memo, hook ) {
+		memo[ hook ] = require( "./hooks" )( hook, pkg, utils ) };
+		return memo;
+}, {});
 
 module.exports = {
-	precommit: require( "./hook" )( "precommit", pkg, utils )
+	hooks: hooks
 };

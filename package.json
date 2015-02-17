@@ -15,22 +15,26 @@
   },
   "dependencies": {
     "lodash": "2.4.1",
+    "optimist": "^0.6.1",
     "when": "3.6.4"
   },
   "devDependencies": {
-    "gulp": "~3.8.0",
-    "gulp-mocha": "~2.0.0",
-    "gulp-watch": "~3.0.0",
     "expect.js": "~0.3.1",
-    "mocha": "~2.1.0",
-    "istanbul": "~0.3.2",
+    "gulp": "^3.8.11",
     "gulp-istanbul": "0.5.x",
+    "gulp-jshint": "^1.9.2",
+    "gulp-mocha": "^2.0.0",
+    "gulp-watch": "^4.1.1",
+    "istanbul": "~0.3.2",
+    "jshint-stylish": "^1.0.0",
+    "mocha": "^2.1.0",
     "open": "0.0.5",
-    "whistlepunk": "~0.0.1",
-    "sinon": "1.12.x"
+    "should": "^5.0.0",
+    "sinon": "^1.12.2",
+    "whistlepunk": "~0.0.1"
   },
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "LeanKit"
+  "author": "Brian Edgerton"
 }

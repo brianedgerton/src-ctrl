@@ -2,4 +2,4 @@
 
 var control = require( "src-ctrl" );
 
-control.hooks.precommit();
+control.hooks.prepush();
