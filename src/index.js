@@ -5,14 +5,14 @@ var pkg;
 
 try {
 	pkg = require( cwd + "/package.json" );
-} catch (e) {
-	return utils.finish( "No package.json found" );
+} catch ( e ) {
+	utils.finish( "No package.json found" );
 }
 
-var hooks = [ "precommit", "prepush" ].reduce(function( memo, hook ) {
-		memo[ hook ] = require( "./hooks" )( hook, pkg, utils ) };
-		return memo;
-}, {});
+var hooks = [ "precommit", "prepush" ].reduce( function( memo, hook ) {
+	memo[ hook ] = require( "./hooks" )( hook, pkg, utils );
+	return memo;
+}, {} );
 
 module.exports = {
 	hooks: hooks

@@ -1,5 +1,6 @@
-var lift = require( "when/node" ).lift;
+var when = require( "when" );
 var npm = require( "npm" );
+var _ = require( "lodash" );
 
 var api = module.exports = {
 	finish: function( msg ) {
@@ -16,13 +17,18 @@ var api = module.exports = {
 		process.exit( 1 );
 	},
 
-	loadNpm: function( pkg ) {
-		var p = lift( npm.load )( pkg );
+	loadNpm: function( _options ) {
+		var options = _.merge( { dev: true }, ( _options || {} ) );
 
-		return p.then( function() {
-			return npm;
-		}, function( err ) {
-				return api.finish( "Problem loading package.json" );
+		return when.promise( function( resolve, reject ) {
+			npm.load( options, function( err, instance ) {
+				if ( err ) {
+					return reject( new Error( "Problem loading NPM" ) );
+				}
+
+				resolve( instance );
 			} );
+		} );
+
 	}
 };

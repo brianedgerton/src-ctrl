@@ -1,18 +1,18 @@
-var _ = require( "lodash" );
-var sequence = require( "when/sequence" );
 var utils;
 
 module.exports = function( hook, pkg, _utils ) {
 
 	utils = _utils;
 
-	return function() {
+	return function( _npmOptions ) {
 
-		if ( !pkg !pkg.scripts || !pkg.scripts[ hook ] ) {
+		if ( !pkg || !pkg.scripts || !pkg.scripts[ hook ] ) {
 			return utils.success();
 		}
 
-		utils.loadNpm( pkg )
+		var npmOptions = _npmOptions || {};
+
+		utils.loadNpm( npmOptions )
 			.then( function( npm ) {
 
 				npm[ "run-script" ]( hook, function( err ) {
@@ -25,7 +25,9 @@ module.exports = function( hook, pkg, _utils ) {
 
 				} );
 
-			} );
+			}, function( err ) {
+					utils.finish();
+				} );
 
 	};
 

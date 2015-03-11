@@ -1,0 +1,21 @@
+{
+  "name": "src-ctrl-test",
+  "version": "0.0.1",
+  "contributors": [
+    {
+      "name": "Brian Edgerton",
+      "email": "brian.edgerton@leankit.com"
+    }
+  ],
+  "description": "Sample package.json",
+  "main": "src/index.js",
+  "scripts": {
+    "precommit": "./success.sh",
+    "prepush": "./fail.sh"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "author": "Brian Edgerton"
+}
