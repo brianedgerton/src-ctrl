@@ -1,21 +1,34 @@
 # src-ctrl
 
-## DO NOT USE, STILL IN PROOF OF CONCEPT STAGE
+## This is Alpha Software
 
-* Installs `pre-commit` and `pre-push` hooks to `.git/hooks`
-* Runs `pre-commit` and `pre-push` commands specified in `package.json`
-* Loads `src-ctrl` plugins and runs any `pre-commit` and `pre-push` sequences
-* Loads plugin configuration from `package.json`
+`src-ctrl` is a simple module that will allow you to run `pre-commit` and `pre-push` tasks specified in your `package.json` file.
 
-*Future*
+## Usage
 
-* When installed globally, provides shell commands to help with gitflow
+Installing the `src-ctrl` module will copy to scripts to your `./.git/hooks` folder. If there are existing scripts there, it will rename them and they will be restored if `src-ctrl` is uninstalled. After installation, just add the commands in your `package.json` file.
 
-### src-ctrl-leankit-gitflow
+```json
+{
+	"name": "my-module",
+	"scripts": {
+		"test": "mocha ./specs/**.spec.js",
+		"pre-commit": "gulp lint && npm test",
+		"pre-push": "gulp integration-tests"
+	}
+}
+```
 
-* `pre-commit`
-	* Prevent committing directly to `master` or `develop`
+If the commands exit with a non-zero status, the commit or push event will be prevented.
 
-* `pre-push`
-	* Prevent pushing directly to `upstream`
-	* Ensure that `origin` is not an address that should be `upstream`
+**But my tests don't pass and I really need to commit? What do I do?**
+
+If you really need to break the rules, `git` itself allows the bypassing of hooks by using the `--no-verify` option.
+
+```bash
+$ git commit --no-verify
+```
+
+## Future
+
+The next phase will include a plugin loader with the intent that plugins could provide more functionality to facilitate specific git-oriented workflows.

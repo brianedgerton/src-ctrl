@@ -3,3 +3,5 @@
 /.jscsrc
 /.jshintrc
 /gulpfile.js
+/coverage
+/.idea
