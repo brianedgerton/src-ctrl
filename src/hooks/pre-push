@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+var control = require( "src-ctrl" );
+
+control.hooks["pre-push"]()
+	.then( function( result ) {
+		process.exit( 0 );
+	}, function( err ) {
+		process.exit( err.code || 1 );
+	} );

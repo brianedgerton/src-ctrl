@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-var control = require( "src-ctrl" );
-
-control.hooks.prepush();

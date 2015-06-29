@@ -9,8 +9,8 @@ try {
 	utils.finish( "No package.json found" );
 }
 
-var hooks = [ "precommit", "prepush" ].reduce( function( memo, hook ) {
-	memo[ hook ] = require( "./hooks" )( hook, pkg, utils );
+var hooks = [ "pre-commit", "pre-push" ].reduce( function( memo, hook ) {
+	memo[ hook ] = require( "./hooks" )( hook, pkg );
 	return memo;
 }, {} );
 

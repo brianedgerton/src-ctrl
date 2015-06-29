@@ -11,28 +11,25 @@
   "main": "src/index.js",
   "scripts": {
     "test": "gulp test",
-    "coverage": "gulp coverage"
+    "install": "./src/install",
+    "uninstall": "./src/uninstall"
   },
   "dependencies": {
-    "lodash": "2.4.1",
-    "npm": "^2.5.1",
+    "drudgeon": "^0.1.7",
+    "fs-extra": "^0.20.1",
+    "lodash": "^3.5.0",
     "optimist": "^0.6.1",
     "when": "3.6.4"
   },
   "devDependencies": {
-    "expect.js": "~0.3.1",
+    "biggulp": "0.0.5",
+    "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
     "gulp": "^3.8.11",
-    "gulp-istanbul": "0.5.x",
-    "gulp-jshint": "^1.9.2",
-    "gulp-mocha": "^2.0.0",
-    "gulp-watch": "^4.1.1",
-    "istanbul": "~0.3.2",
-    "jshint-stylish": "^1.0.0",
-    "mocha": "^2.1.0",
-    "open": "0.0.5",
-    "should": "^5.0.0",
-    "sinon": "^1.12.2",
-    "whistlepunk": "~0.0.1"
+    "proxyquire": "^1.5.0",
+    "sinon": "^1.15.3",
+    "sinon-as-promised": "^4.0.0",
+    "sinon-chai": "^2.8.0"
   },
   "engines": {
     "node": ">=0.10.0"

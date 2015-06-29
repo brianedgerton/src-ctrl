@@ -1,34 +1,46 @@
 var when = require( "when" );
-var npm = require( "npm" );
 var _ = require( "lodash" );
+var drudgeon = require( "drudgeon" );
 
-var api = module.exports = {
-	finish: function( msg ) {
-		if ( msg ) {
-			console.log( msg );
-		}
-		process.exit( 0 );
-	},
+var api = {
 
-	fail: function( msg ) {
-		if ( msg ) {
-			console.log( msg );
-		}
-		process.exit( 1 );
-	},
-
-	loadNpm: function( _options ) {
-		var options = _.merge( { dev: true }, ( _options || {} ) );
-
-		return when.promise( function( resolve, reject ) {
-			npm.load( options, function( err, instance ) {
-				if ( err ) {
-					return reject( new Error( "Problem loading NPM" ) );
+	findRootDirectory: function() {
+		return drudgeon( {
+			step: "git rev-parse --show-toplevel"
+		} ).run()
+			.then( function( result ) {
+				if ( !result || !result.step || !result.step[0] ) {
+					return null;
 				}
-
-				resolve( instance );
+				var dir = result.step[0].trim();
+				return dir;
 			} );
+	},
+
+	run: function( command ) {
+		var commands = _.map( command.split( "&&" ), function( c ) {
+			return c.trim();
 		} );
 
+		var set = _.reduce( commands, function( memo, com ) {
+			var args = _.map( com.split( " " ), function( piece ) {
+				return piece.trim();
+			} );
+
+			var cmd = args.shift();
+
+			var key = _.uniqueId( "step_" );
+			memo[ key ] = {
+				cwd: process.cwd(),
+				cmd: cmd,
+				args: args
+			};
+
+			return memo;
+		}, {} );
+
+		return drudgeon( set ).run();
 	}
 };
+
+module.exports = api;
