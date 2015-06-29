@@ -10,10 +10,10 @@ module.exports = function( hook, pkg ) {
 		return utils.run( pkg.scripts[ hook ] )
 		 .progress( function( data ) {
 			if ( data.stdout ) {
-				console.log( data.stdout )
+				process.stdout.write( data.stdout )
 			}
 			if ( data.stderr ) {
-				console.log( data.stderr )
+				process.stderr.write( data.stderr )
 			}
 		 } ).then( function( result ) {
 			return hook + " hook success";

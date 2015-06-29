@@ -11,8 +11,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "gulp test",
-    "install": "./src/install",
-    "uninstall": "./src/uninstall"
+    "install": "./src/install.js",
+    "uninstall": "./src/uninstall.js"
   },
   "dependencies": {
     "drudgeon": "^0.1.7",
