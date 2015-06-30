@@ -52,4 +52,27 @@ describe( "Hook scripts", function() {
 			error.message.should.equal( "pre-push hook failed" );
 		} );
 	} );
+
+	describe( "when using an alternate hook script name", function() {
+		var npmRun;
+		before( function() {
+			var altPkg = {
+				scripts: {
+					"precommit": "testing"
+				}
+			};
+
+			npmRun = sinon.stub( utils, "npmRun" ).resolves( true );
+			hook = hookFactory( "pre-commit", altPkg );
+			hook();
+		} );
+
+		after( function() {
+			npmRun.restore();
+		} );
+
+		it( "should call npm run with the correct script name", function() {
+			npmRun.should.have.been.calledWith( "precommit" );
+		} );
+	} );
 } );
