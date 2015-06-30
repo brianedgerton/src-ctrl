@@ -1,5 +1,5 @@
-var should = require( "should" );
-var sinon = require( "sinon" );
+require( "../setup.js" );
+var when = require( "when" );
 var hookFactory;
 var pkg;
 var utils;
@@ -10,6 +10,7 @@ describe( "Hook scripts", function() {
 	before( function() {
 		originalDirectory = process.cwd();
 		process.chdir( targetDirectory );
+		utils = require( "../../src/utils.js" );
 		hookFactory = require( "../../src/hooks.js" );
 		pkg = require( "../scripts/package.json" );
 	} );
