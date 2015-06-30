@@ -3,11 +3,24 @@ var when = require( "when" );
 
 module.exports = function( hook, pkg ) {
 	return function() {
-		if ( !pkg || !pkg.scripts || !pkg.scripts[ hook ] ) {
+		if ( !pkg || !pkg.scripts ) {
 			return when.resolve();
 		}
 
-		return utils.run( pkg.scripts[ hook ] )
+		var altHookName = hook.replace( "-", "" );
+		var foundHook;
+
+		if ( pkg.scripts[ hook ] ) {
+			foundHook = hook;
+		} else if ( pkg.scripts[ altHookName ] ) {
+			foundHook = altHookName;
+		}
+
+		if ( !foundHook ) {
+			return when.resolve();
+		}
+
+		return utils.npmRun( foundHook )
 		 .progress( function( data ) {
 			if ( data.stdout ) {
 				process.stdout.write( data.stdout )

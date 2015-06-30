@@ -17,6 +17,16 @@ var api = {
 			} );
 	},
 
+	npmRun: function( scriptName ) {
+		return drudgeon( {
+			step: {
+				cwd: process.cwd(),
+				cmd: "npm",
+				args: [ "run", "--silent", scriptName ]
+			}
+		} ).run();
+	},
+
 	run: function( command ) {
 		var commands = _.map( command.split( "&&" ), function( c ) {
 			return c.trim();

@@ -1,9 +1,11 @@
+var when = require( "when" );
+var sinon = require( "sinon" );
+require( "sinon-as-promised" )( when.Promise );
+
+global.sinon = sinon;
+
 var chai = require( "chai" );
 var chaiAsPromised = require( "chai-as-promised" );
-chai.use( chaiAsPromised );
 chai.use( require( "sinon-chai" ) );
-
-global.sinon = require( "sinon" );
-global.should = chai.should;
-require( "sinon-as-promised" );
-
+chai.use( chaiAsPromised );
+global.should = chai.should();
